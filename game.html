@@ -1,0 +1,54 @@
+<html> 
+<title>抽 奖 程 序</title> 
+<head>
+<script type="text/javascript"> 
+	var alldata = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z" ;
+	var alldataarr = alldata.split(","); //分隔
+	var num = alldataarr.length-1 ; 
+	var timer 
+function change() 
+{ 
+	document.getElementById("oknum").innerHTML = alldataarr[GetRnd(0,num)]; 
+} 
+function GetRnd(min,max){ 
+	return parseInt(Math.random()*(max-min+1)); //解析字符串
+} 
+function start(){ 
+	clearInterval(timer); //消除timer
+	timer = setInterval('change()',10); //变换速度越小越快
+} 
+function ok(){ 
+	if(document.form1.showresult.value==""){
+	document.getElementById("d2").innerHTML="请输入你的答案！"
+	}
+	else{
+	clearInterval(timer);
+		if(document.form1.showresult.value!=document.getElementById("oknum").innerText){
+		document.getElementById("d2").innerHTML="你没有猜对答案！"
+		document.form1.showresult.focus();
+		}
+		else{
+		document.getElementById("d2").innerHTML="恭喜你猜对你答案！"
+		document.form1.showresult.focus();
+		} 
+	} 
+}
+</script>
+</head> 
+
+<body background="photo/yellowblue.jpg">  
+<center> 
+<form name="form1">
+<div id="oknum" name="oknum" ><b><font size="5">输入答案，然后请单击开始！</font></b></div> 
+<button onclick="start()"><b>开始</b></button> 
+<button onclick="ok()"><b>停止</b></button> 
+<b>您的选择是：</b>
+<input type="text" name="showresult" id="showresult" value="" size="9"><div id="d2" name="d2">
+
+
+
+</center>
+</form>
+</body> 
+</html>
+
